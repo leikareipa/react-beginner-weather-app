@@ -10,6 +10,12 @@
                 background-color: black;
                 color: lightgray;
             }
+            #weather-card
+            {
+                display: inline-block;
+                padding: 10px;
+                background-color: #303030;
+            }
         </style>
     </head>
     <body>
@@ -20,13 +26,11 @@
         <script src="./js/react/react.development.js"></script>
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
-            import {Temperature} from "./js/react-components/Temperature.js";
-            import {WeatherImage} from "./js/react-components/WeatherImage.js";
+            import {WeatherCard} from "./js/react-components/WeatherCard.js";
 
-            const temperature = React.createElement(Temperature, {celsius: 32});
-            const image = React.createElement(WeatherImage, {WeatherSymbol3:1});
+            const weatherCard = React.createElement(WeatherCard, {celsius:32, WeatherSymbol3:1});
 
-            ReactDOM.render([image, temperature], document.getElementById("app"));
+            ReactDOM.render(weatherCard, document.getElementById("app"));
         </script>
     </body>
 </html>

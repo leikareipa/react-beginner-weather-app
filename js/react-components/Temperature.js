@@ -18,7 +18,7 @@
 // If the temperature value is provided on more than one scale (e.g. props.celsius
 // = 25 && props.fahrenheit = 77), the other scales' values will be overwritten by
 // the conversion from the default scale.
-export function Temperature(props = {/*celsius | fahrenheit | kelvin*/})
+export function Temperature(props = {celsius, fahrenheit, kelvin})
 {
     const temperatureScales =
     {
