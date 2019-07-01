@@ -1,8 +1,8 @@
 "use strict";
 
-// Displays the given temperature along with its symbol; e.g. "25 °C". Supports
-// three temperature scales: Celsius, Fahrenheit, and Kelvin. Note that the
-// temperature will be displayed as a floored integer; such that e.g. 28.8 and
+// Displays as a string the given temperature along with its symbol; e.g. "25 °C".
+// Supports three temperature scales: Celsius, Fahrenheit, and Kelvin. Note that
+// the temperature will be displayed as a floored integer; such that e.g. 28.8 and
 // 28.3 will both show as 28.
 //
 // You can provide the temperature on one of the supported scales, and the component
@@ -18,7 +18,7 @@
 // If the temperature value is provided on more than one scale (e.g. props.celsius
 // = 25 && props.fahrenheit = 77), the other scales' values will be overwritten by
 // the conversion from the default scale.
-export function Temperature(props = {celsius, fahrenheit, kelvin})
+export function TemperatureString(props = {celsius, fahrenheit, kelvin})
 {
     const temperatureScales =
     {

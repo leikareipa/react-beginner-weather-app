@@ -1,6 +1,6 @@
 "use strict";
 
-import {Temperature} from "./Temperature.js";
+import {TemperatureString} from "./TemperatureString.js";
 import {WeatherImage} from "./WeatherImage.js";
 
 // Displays a card containing weather information, like temperature and a graphic
@@ -10,5 +10,5 @@ export function WeatherCard(props = {})
     return React.createElement("div", {id:"weather-card"},
                 React.createElement(WeatherImage, props),
                 React.createElement("br"), /// Temporary hack.
-                React.createElement(Temperature, props));
+                React.createElement(TemperatureString, props));
 }
