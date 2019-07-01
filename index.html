@@ -21,9 +21,12 @@
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
             import {Temperature} from "./js/react-components/Temperature.js";
+            import {WeatherImage} from "./js/react-components/WeatherImage.js";
 
-            const temp = React.createElement(Temperature, {celsius: 32});
-            ReactDOM.render(temp, document.getElementById("app"));
+            const temperature = React.createElement(Temperature, {celsius: 32});
+            const image = React.createElement(WeatherImage, {WeatherSymbol3:1});
+
+            ReactDOM.render([image, temperature], document.getElementById("app"));
         </script>
     </body>
 </html>
