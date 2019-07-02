@@ -4,15 +4,16 @@
 // a particular observation of the weather with discrete parameters (temperature, humidity, etc.).
 export async function load_weather_data(args = {})
 {
-    const apiUrl    = "http://opendata.fmi.fi/wfs?service=WFS&request=getFeature";
-    const apiQuery  = "&storedquery_id=fmi::forecast::hirlam::surface::point::multipointcoverage";
-    const apiPlace  = `&place=${args.place}`;
-    const apiParams = `&parameters=${args.parameters.join(",")}`;
+    const apiUrl      = "http://opendata.fmi.fi/wfs?service=WFS&request=getFeature";
+    const apiQuery    = "&storedquery_id=fmi::forecast::hirlam::surface::point::multipointcoverage";
+    const apiPlace    = `&place=${args.place}`;
+    const apiTimestep = "&timestep=180";
+    const apiParams   = `&parameters=${args.parameters.join(",")}`;
 
     // Fetch the data and convert it into an array of values, where for each weather observation
     // there is one value per corresponding parameter. The values will be arranged in the order
     // in which the parameters were given.
-    const rawData = await fetch(apiUrl + apiQuery + apiPlace + apiParams).then(response=>response.text());
+    const rawData = await fetch(/*apiUrl + apiQuery + apiPlace + apiTimestep + apiParams*/"./misc/weather-data.xml").then(response=>response.text());
     const xml = new DOMParser().parseFromString(rawData,"text/xml");
     const values = xml.getElementsByTagName("gml:doubleOrNilReasonTupleList")[0].firstChild.nodeValue.split(" ").filter(e=>e.trim()!="");
 

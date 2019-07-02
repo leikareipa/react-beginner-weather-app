@@ -57,8 +57,5 @@ export function TemperatureString(props = {celsius, fahrenheit, kelvin})
         return null;
     })());
 
-    return React.createElement("span",
-                                {onClick: ()=>setCurrentTemperatureScale("fahrenheit")},
-                                `${temperatureScales[currentTemperatureScale].value}
-                                 ${temperatureScales[currentTemperatureScale].symbol}`);
+    return React.createElement("span", {}, `${temperatureScales[currentTemperatureScale].value}°`);
 }

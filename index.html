@@ -8,17 +8,27 @@
             /* Placeholder stylings.*/
             body
             {
-                background-color: black;
-                color: lightgray;
+                background-color: rgb(255, 255, 255);
+                color: dimgray;
                 text-align: center;
+            }
+            #app
+            {
+                padding-top: 250px;
             }
             #weather-card
             {
                 display: inline-block;
-                padding: 10px;
-                margin: 2px;
+                padding: 14px;
+                padding-left: 20px;
+                padding-right: 20px;
+                background-color: rgb(249, 249, 247);
+                margin: 3px;
+                border-radius: 2px;
                 text-align: center;
-                background-color: #303030;
+                font-size: 80%;
+                box-shadow: 0px 6px 4px -3px #00000023;
+                position: relative;
             }
         </style>
     </head>
@@ -40,14 +50,13 @@
                 // Query the weather API for the current weather entries.
                 const weatherEntries = await load_weather_data(
                 {
-                    place: "utsjoki",
+                    place: "turku",
                     parameters: ["temperature", "weathersymbol3"]
                 });
 
                 // Add the weather entries into the UI as weather cards.
                 {
-                    const maxNumCards = 8;
-
+                    const maxNumCards = 9;
                     const cardArray = !weatherEntries.length? [React.createElement("p", {key:0}, "No weather data to display.")]
                                                             : new Array(Math.min(maxNumCards, weatherEntries.length)).fill().map((c, idx)=>
                     {

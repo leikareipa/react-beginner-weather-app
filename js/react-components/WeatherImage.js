@@ -5,8 +5,8 @@
 // fmi::forecast::hirlam::surface::point::multipointcoverage query.
 export function WeatherImage(props = {symbol})
 {
-    const width = 50;
-    const height = 50;
+    const width = 40;
+    const height = 40;
 
     return React.createElement("img", {width, height, src: imageUrl(props.symbol)});
 
