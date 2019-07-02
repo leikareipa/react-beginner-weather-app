@@ -2,8 +2,8 @@
 
 // Displays as a string the given temperature along with its symbol; e.g. "25 °C".
 // Supports three temperature scales: Celsius, Fahrenheit, and Kelvin. Note that
-// the temperature will be displayed as a floored integer; such that e.g. 28.8 and
-// 28.3 will both show as 28.
+// the temperature will be displayed as a rounded integer; such that e.g. 28.8 will
+// be shown as 29, and 28.3 as 28.
 //
 // You can provide the temperature on one of the supported scales, and the component
 // will automatically convert its value onto the other supported scales. E.g. if
@@ -22,9 +22,9 @@ export function TemperatureString(props = {celsius, fahrenheit, kelvin})
 {
     const temperatureScales =
     {
-        celsius:    {value: Math.floor(props.celsius),    symbol: "°C"},
-        fahrenheit: {value: Math.floor(props.fahrenheit), symbol: "°F"},
-        kelvin:     {value: Math.floor(props.kelvin),     symbol: "°K"},
+        celsius:    {value: Math.round(props.celsius),    symbol: "°C"},
+        fahrenheit: {value: Math.round(props.fahrenheit), symbol: "°F"},
+        kelvin:     {value: Math.round(props.kelvin),     symbol: "°K"},
     };
 
     // Derive the other temperature scales from the one given as a prop.
@@ -32,24 +32,24 @@ export function TemperatureString(props = {celsius, fahrenheit, kelvin})
     {
         if (typeof props.celsius !== "undefined")
         {
-            temperatureScales.fahrenheit.value = Math.floor(props.celsius * 9/5 + 32);
-            temperatureScales.kelvin.value = Math.floor(props.celsius + 273.15);
+            temperatureScales.fahrenheit.value = Math.round(props.celsius * 9/5 + 32);
+            temperatureScales.kelvin.value = Math.round(props.celsius + 273.15);
 
             return "celsius";
         }
 
         if (typeof props.fahrenheit !== "undefined")
         {
-            temperatureScales.celsius.value = Math.floor((props.fahrenheit - 32) * 5/9);
-            temperatureScales.kelvin.value = Math.floor((props.fahrenheit - 32) * 5/9 + 273.15);
+            temperatureScales.celsius.value = Math.round((props.fahrenheit - 32) * 5/9);
+            temperatureScales.kelvin.value = Math.round((props.fahrenheit - 32) * 5/9 + 273.15);
 
             return "fahrenheit";
         }
 
         if (typeof props.kelvin !== "undefined")
         {
-            temperatureScales.celsius.value = Math.floor(props.kelvin - 273.15);
-            temperatureScales.fahrenheit.value = Math.floor((props.kelvin - 273.15) * 9/5 + 32);
+            temperatureScales.celsius.value = Math.round(props.kelvin - 273.15);
+            temperatureScales.fahrenheit.value = Math.round((props.kelvin - 273.15) * 9/5 + 32);
 
             return "kelvin";
         }

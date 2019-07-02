@@ -10,6 +10,7 @@
             {
                 background-color: black;
                 color: lightgray;
+                text-align: center;
             }
             #weather-card
             {
@@ -30,13 +31,37 @@
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
             import {WeatherCard} from "./js/react-components/WeatherCard.js";
+            import {load_weather_data} from "./js/load-weather-data.js";
 
-            const cardArray = new Array(7).fill().map((c, idx)=>
+            // Create and display a set of weather cards, each showing the weather conditions
+            // at a particular time.
+            (async()=>
             {
-                return React.createElement(WeatherCard, {key:idx, celsius:idx*4, WeatherSymbol3:idx});
-            })
+                // Query the weather API for the current weather entries.
+                const weatherEntries = await load_weather_data(
+                {
+                    place: "utsjoki",
+                    parameters: ["temperature", "weathersymbol3"]
+                });
 
-            ReactDOM.render(cardArray, document.getElementById("app"));
+                // Add the weather entries into the UI as weather cards.
+                {
+                    const maxNumCards = 8;
+
+                    const cardArray = !weatherEntries.length? [React.createElement("p", {key:0}, "No weather data to display.")]
+                                                            : new Array(Math.min(maxNumCards, weatherEntries.length)).fill().map((c, idx)=>
+                    {
+                        return React.createElement(WeatherCard,
+                        {
+                            key: idx,
+                            celsius: weatherEntries[idx].temperature,
+                            symbol: weatherEntries[idx].weathersymbol3,
+                        });
+                    });
+
+                    ReactDOM.render(cardArray, document.getElementById("app"));
+                }
+            })();   
         </script>
     </body>
 </html>
