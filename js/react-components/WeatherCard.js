@@ -5,10 +5,24 @@ import {WeatherImage} from "./WeatherImage.js";
 
 // Displays a card containing weather information, like temperature and a graphic
 // illustrating the current weather conditions (sunny, rainy, cloudy, etc.).
-export function WeatherCard(props = {})
+export function WeatherCard({temperatureC, initialTemperatureDisplayScale, weatherSymbolId})
 {
-    return React.createElement("div", {id:"weather-card", style:{bottom:props.celsius*8+"px"}}, /// Temporary vertical styling.
-                React.createElement(WeatherImage, props),
-                React.createElement("br"), /// Temporary hack.
-                React.createElement(TemperatureString, props));
+    const [temperatureDisplayScale, setTemperatureDisplayScale] = React.useState(initialTemperatureDisplayScale);
+
+    /// Looks a bit messy without JSX, eh?
+    return React.createElement("div",
+    {
+        id:"weather-card",
+
+        /// Temporary functionality to test toggling the temperature display scale.
+        onClick:()=>setTemperatureDisplayScale(temperatureDisplayScale === "celsius"? "fahrenheit" : "celsius"),
+
+        /// Temporary vertical styling.
+        style:
+        {
+            bottom: temperatureC*8+"px",
+        }
+    }, React.createElement(WeatherImage, {weatherSymbolId}),
+       React.createElement("br"), /// Temporary hack.
+       React.createElement(TemperatureString, {temperatureC, temperatureDisplayScale, showTemperatureScaleSymbol:false}));
 }

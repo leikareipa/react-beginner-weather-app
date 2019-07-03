@@ -1,23 +1,23 @@
 "use strict";
 
 // Displays a graphic indicating a weather condition - like sunny, cloudy, rainy, etc.
-// Takes as input a WeatherSymbol3 value as returned by FMI's data API for the
-// fmi::forecast::hirlam::surface::point::multipointcoverage query.
-export function WeatherImage(props = {symbol})
+// Takes as input a WeatherSymbol3 value as returned by FMI's open data weather API for
+// the fmi::forecast::hirlam::surface::point::multipointcoverage query.
+export function WeatherImage({weatherSymbolId})
 {
     const width = 40;
     const height = 40;
 
-    return React.createElement("img", {width, height, src: imageUrl(props.symbol)});
+    return React.createElement("img", {width, height, src:imageUrl(weatherSymbolId)});
 
     // Returns a URL corresponding to the given weather image id.
-    function imageUrl(symbol = 0)
+    function imageUrl(symbolId = 0)
     {
         const baseUrl = "https://cdn.fmi.fi/symbol-images/smartsymbol/v3/p/";
         const imageId = (()=>
         {
             // Maps FMI's legacy image ids into their 2019 ones.
-            switch (symbol)
+            switch (symbolId)
             {
                 case 1:  return 1;  // selkeää
                 case 2:  return 4;  // puolipilvistä

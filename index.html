@@ -63,8 +63,9 @@
                         return React.createElement(WeatherCard,
                         {
                             key: idx,
-                            celsius: weatherEntries[idx].temperature,
-                            symbol: weatherEntries[idx].weathersymbol3,
+                            temperatureC: weatherEntries[idx].temperature,
+                            weatherSymbolId: weatherEntries[idx].weathersymbol3,
+                            initialTemperatureDisplayScale: "celsius",
                         });
                     });
 
