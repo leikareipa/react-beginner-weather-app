@@ -15,6 +15,12 @@ export function WeatherCardDisplay(props = {/*weatherData = [{}}*/})
             temperatureC: props.weatherData[idx].temperature,
             weatherSymbolId: props.weatherData[idx].weathersymbol3,
             initialTemperatureDisplayScale: "celsius",
+
+            /// Temporary vertical styling.
+            style:
+            {
+                bottom: props.weatherData[idx].temperature*8+"px",
+            },
         });
     });
 

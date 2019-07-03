@@ -26,12 +26,11 @@ export function WeatherApp(props = {/*cities = [""]*/})
     // a particular time.
     async function create_weather_display(cityName = "")
     {
-        const maxNumCards = 8;
         const weatherData = await fmi_weather_api().get_forecast(
         {
             place: cityName,
             timeStepHr: 3,
-            numForecasts: maxNumCards,
+            numForecasts: 8,
         });
 
         const weatherCardDisplay = React.createElement(WeatherCardDisplay, {weatherData});
