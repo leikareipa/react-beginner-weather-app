@@ -23,6 +23,5 @@ export function WeatherCard({temperatureC, initialTemperatureDisplayScale, weath
             bottom: temperatureC*8+"px",
         }
     }, React.createElement(WeatherSymbol, {weatherSymbolId}),
-       React.createElement("br"), /// Temporary hack.
        React.createElement(TemperatureString, {temperatureC, temperatureDisplayScale, showTemperatureScaleSymbol:false}));
 }
