@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>React weather app</title>
+        <title>React beginner weather app</title>
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="index.css">
     </head>
     <body>
-        <div id="weather-app"></div>
+        <div id="weather-app" class="WeatherApp"></div>
 
         <script src="./js/react/react.development.js"></script>
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
+            import {fmi_weather_api} from "./js/weather-api/weather-api.js";
             import {WeatherApp} from "./js/react-components/WeatherApp.js";
 
-            const weatherApp = React.createElement(WeatherApp,
+            (async()=>
             {
-                cities: ["Suomussalmi", "Viipuri", "Helsinki", "Kittilä", "Tampere", "Turku", "Utsjoki"]
-            });
+                const city = (()=>
+                {
+                    const params = new URLSearchParams(window.location.search);
+                    return (params.has("city")? params.get("city") : "Helsinki");
+                })();
 
-            ReactDOM.render(weatherApp, document.getElementById("weather-app"));
+                const weatherData = await fmi_weather_api().get_forecast(
+                {
+                    place: city,
+                    timeStepHr: 3,
+                    numForecasts: 8,
+                });
+
+                const weatherApp = React.createElement(WeatherApp, {city, weatherData});
+
+                ReactDOM.render(weatherApp, document.getElementById("weather-app"));
+            })();
         </script>
     </body>
 </html>

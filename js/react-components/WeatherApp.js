@@ -1,40 +1,25 @@
 "use strict";
 
-import {fmi_weather_api} from "../weather-api/weather-api.js";
-import {CitySelector} from "./CitySelector.js";
 import {WeatherCardDisplay} from "./WeatherCardDisplay.js";
 
-// Displays a weather forecast for the given cities, deriving its data from the open data
-// API of the Finnish Meteorological Institute.
-export function WeatherApp(props = {/*cities = [""]*/})
+// Displays the given weather data for the given city.
+export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
 {
-    // Initialize the weather display to the first item in the CitySelector's list.
-    create_weather_display(props.cities[0]);
-
-    const citySelector = React.createElement(CitySelector,
+    if (typeof props.city !== "string" ||
+        !Array.isArray(props.weatherData) ||
+        !props.weatherData.length)
     {
-        selectionCallback: create_weather_display,
-        label: "A weather forecast for the next 24 hours in ",
-        cities: props.cities,
-    });
-
-    return React.createElement(React.Fragment, {},
-                               citySelector,
-                               React.createElement("div", {id: "weather-display"}));
-
-    // Create and display a set of weather cards, each showing the weather conditions at
-    // a particular time.
-    async function create_weather_display(cityName = "")
+        return React.createElement("p", {style:{fontStyle:"italic"}}, `No weather data found for \"${props.city}\".`);
+    }
+    else
     {
-        const weatherData = await fmi_weather_api().get_forecast(
-        {
-            place: cityName,
-            timeStepHr: 3,
-            numForecasts: 8,
-        });
+        /// FIXME: Placeholder implementation. 
+        const capitalizedCityName = (props.city[0].toUpperCase() + props.city.slice(1));
 
-        const weatherCardDisplay = React.createElement(WeatherCardDisplay, {weatherData});
-
-        ReactDOM.render(weatherCardDisplay, document.getElementById("weather-display"));
+        return React.createElement(React.Fragment, {},
+                                   React.createElement("div", {id:"title"},
+                                       React.createElement(React.Fragment, {}, "A weather forecast for the next 24 hours in "),
+                                       React.createElement("span", {style:{fontWeight:"bold"}}, capitalizedCityName)),
+                                   React.createElement(WeatherCardDisplay, {weatherData: props.weatherData}));
     }
 }

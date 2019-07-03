@@ -31,20 +31,27 @@ export function fmi_weather_api()
             }
 
             /// TODO: Add the "starttime" and "endtime" query parameters.
-           /* const rawData = await fetch(api.baseUrl +
+            const rawData = await fetch(api.baseUrl +
                                         `&request=getFeature` +
                                         `&storedquery_id=${api.queryId.forecast}` +
                                         `&place=${args.place}` +
                                         `&parameters=${args.returnParameters.join(",")}` +
                                         `&timestep=${args.forecastIntervalHr*60}`)
-                                        .then(response=>response.text());*/
-            const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
+                                        .then(response=>response.text());
+            //const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
 
-            const values = new DOMParser().parseFromString(rawData,"text/xml")
-                                          .getElementsByTagName("gml:doubleOrNilReasonTupleList")[0].firstChild
-                                                                                                    .nodeValue
-                                                                                                    .split(" ")
-                                                                                                    .filter(e=>e.trim()!="");
+            const values = (()=>
+            {
+                const xml = new DOMParser().parseFromString(rawData,"text/xml");
+                const valueElements = xml.getElementsByTagName("gml:doubleOrNilReasonTupleList");
+
+                if (!valueElements.length)
+                {
+                    return [];
+                }
+
+                return valueElements[0].firstChild.nodeValue.split(" ").filter(e=>e.trim()!="");
+            })();
 
             /// TODO: Read the forecasts' timestamps from the XML, and add that info into the
             /// weather entries object that this function returns.
@@ -52,7 +59,7 @@ export function fmi_weather_api()
             // For each weather entry, the values array should contain one value per parameter.
             if ((values.length % args.returnParameters.length) != 0)
             {
-                return {};
+                return [];
             }
 
             /// NOTE: We don't do any further error-checking to make sure the API response was valid

@@ -12,7 +12,7 @@ export function WeatherCard(props = {/*style, temperatureC, initialTemperatureDi
     /// Looks a bit messy without JSX, eh?
     return React.createElement("div",
     {
-        id: "weather-card",
+        className: "WeatherCard",
         style: props.style,
 
         /// Temporary functionality to test toggling the temperature display scale.

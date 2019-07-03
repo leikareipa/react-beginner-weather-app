@@ -8,12 +8,12 @@ body
     padding-top: 25px;
 }
 
-#weather-display
+.WeatherCardDisplay
 {
     padding-top: 200px;
 }
 
-#weather-card
+.WeatherCard
 {
     display: inline-block;
     padding: 14px;
@@ -26,6 +26,16 @@ body
     font-size: 80%;
     box-shadow: 0px 6px 4px -3px #00000023;
     position: relative;
+}
+
+#city-selector
+{
+    display: inline-block;
+}
+
+#temperature-scale-selector
+{
+    display: inline-block;
 }
 
 .weather-symbol img
