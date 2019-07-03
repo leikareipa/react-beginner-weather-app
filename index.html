@@ -41,22 +41,22 @@
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
             import {WeatherCard} from "./js/react-components/WeatherCard.js";
-            import {load_weather_data} from "./js/load-weather-data.js";
+            import {fmi_weather_api} from "./js/weather-api/weather-api.js";
 
             // Create and display a set of weather cards, each showing the weather conditions
             // at a particular time.
             (async()=>
             {
-                // Query the weather API for the current weather entries.
-                const weatherEntries = await load_weather_data(
+                const maxNumCards = 8;
+                const weatherEntries = await fmi_weather_api().get_forecast(
                 {
-                    place: "turku",
-                    parameters: ["temperature", "weathersymbol3"]
+                    place: "kauhava",
+                    timeStepHr: 3,
+                    numForecasts: maxNumCards,
                 });
 
                 // Add the weather entries into the UI as weather cards.
                 {
-                    const maxNumCards = 9;
                     const cardArray = !weatherEntries.length? [React.createElement("p", {key:0}, "No weather data to display.")]
                                                             : new Array(Math.min(maxNumCards, weatherEntries.length)).fill().map((c, idx)=>
                     {
