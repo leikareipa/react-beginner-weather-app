@@ -3,7 +3,7 @@
 // Displays a graphic indicating a weather condition - like sunny, cloudy, rainy, etc.
 // Takes as input a WeatherSymbol3 value as returned by FMI's open data weather API for
 // the fmi::forecast::hirlam::surface::point::multipointcoverage query.
-export function WeatherImage({weatherSymbolId})
+export function WeatherSymbol({weatherSymbolId})
 {
     const width = 40;
     const height = 40;

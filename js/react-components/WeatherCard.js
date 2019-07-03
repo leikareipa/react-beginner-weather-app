@@ -1,7 +1,7 @@
 "use strict";
 
 import {TemperatureString} from "./TemperatureString.js";
-import {WeatherImage} from "./WeatherImage.js";
+import {WeatherSymbol} from "./WeatherSymbol.js";
 
 // Displays a card containing weather information, like temperature and a graphic
 // illustrating the current weather conditions (sunny, rainy, cloudy, etc.).
@@ -22,7 +22,7 @@ export function WeatherCard({temperatureC, initialTemperatureDisplayScale, weath
         {
             bottom: temperatureC*8+"px",
         }
-    }, React.createElement(WeatherImage, {weatherSymbolId}),
+    }, React.createElement(WeatherSymbol, {weatherSymbolId}),
        React.createElement("br"), /// Temporary hack.
        React.createElement(TemperatureString, {temperatureC, temperatureDisplayScale, showTemperatureScaleSymbol:false}));
 }
