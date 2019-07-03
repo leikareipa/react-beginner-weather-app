@@ -13,7 +13,7 @@
                 text-align: center;
                 padding-top: 25px;
             }
-            #app
+            #weather-display
             {
                 padding-top: 200px;
             }
@@ -39,60 +39,19 @@
         </style>
     </head>
     <body>
-        <div id="city-selector"></div>
-        <div id="app">
-            <!-- The React stuff will render here.-->
-        </div>
+        <div id="weather-app"></div>
 
         <script src="./js/react/react.development.js"></script>
         <script src="./js/react/react-dom.development.js"></script>
         <script type="module">
-            import {WeatherCard} from "./js/react-components/WeatherCard.js";
-            import {CitySelector} from "./js/react-components/CitySelector.js";
-            import {fmi_weather_api} from "./js/weather-api/weather-api.js";
+            import {WeatherApp} from "./js/react-components/WeatherApp.js";
 
-            const citySelector = React.createElement(CitySelector,
+            const weatherApp = React.createElement(WeatherApp,
             {
-                label: "Forecast weather over the next 24 hours in ",
-
-                cities:
-                [
-                    "Suomussalmi", "Viipuri", "Helsinki", "Kittilä", "Tampere", "Turku", "Utsjoki"
-                ],
-
-                // Create and display a set of weather cards, each showing the weather conditions
-                // at a particular time.
-                create_weather_display: async (cityName = "")=>
-                {
-                    const maxNumCards = 8;
-                    const weatherEntries = await fmi_weather_api().get_forecast(
-                    {
-                        place: cityName,
-                        timeStepHr: 3,
-                        numForecasts: maxNumCards,
-                    });
-
-                    // Add the weather entries as cards into the UI.
-                    {
-                        const cardArray = !weatherEntries.length?
-                                          [React.createElement("p", {key:0}, "No weather data to display.")]
-                                          : new Array(Math.min(maxNumCards, weatherEntries.length)).fill().map((c, idx)=>
-                        {
-                            return React.createElement(WeatherCard,
-                            {
-                                key: idx,
-                                temperatureC: weatherEntries[idx].temperature,
-                                weatherSymbolId: weatherEntries[idx].weathersymbol3,
-                                initialTemperatureDisplayScale: "celsius",
-                            });
-                        });
-
-                        ReactDOM.render(cardArray, document.getElementById("app"));
-                    }
-                },
+                cities: ["Suomussalmi", "Viipuri", "Helsinki", "Kittilä", "Tampere", "Turku", "Utsjoki"]
             });
 
-            ReactDOM.render(citySelector, document.getElementById("city-selector"));
+            ReactDOM.render(weatherApp, document.getElementById("weather-app"));
         </script>
     </body>
 </html>
