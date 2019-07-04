@@ -28,6 +28,20 @@ body
     position: relative;
 }
 
+.WeatherApp #title
+{
+    /* Temporary style hack to manually align elements for mocking.*/
+    position: relative;
+    right: 200px;
+}
+
+.WeatherApp #temperature-scale-selector
+{
+    /* Temporary style hack to manually align elements for mocking.*/
+    position: relative;
+    right: 200px;
+}
+
 #city-selector
 {
     display: inline-block;
