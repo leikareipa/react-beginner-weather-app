@@ -16,31 +16,20 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
     }
     else
     {
-        /// FIXME: Placeholder implementation. 
+        /// FIXME: Placeholder implementation for ensuring proper capitalization of the city name. 
         const capitalizedCityName = (props.city[0].toUpperCase() + props.city.slice(1).toLowerCase());
-
-        const title = React.createElement("span", {className:"label"},
-                                          React.createElement("span", {}, "Weather forecast for "),
-                                          React.createElement("span",
-                                          {
-                                              style:
-                                              {
-                                                  fontWeight: "bold",
-                                              },
-                                          }, capitalizedCityName));
 
         return React.createElement(React.Fragment, {},
                                    React.createElement("div", {className:"title"},
-                                       title,
+                                       React.createElement("span", {className:"label"},
+                                                            React.createElement("span", {}, "Weather forecast for "),
+                                                            React.createElement("span", {style:{fontWeight:"bold"},}, capitalizedCityName)),
                                        React.createElement(TemperatureScaleSelector,
                                        {
                                            temperatureDisplayScale,
                                            selectionCallback: setTemperatureDisplayScale,
-                                           style:
-                                           {
-                                               marginLeft: "13px",
-                                           },
+                                           style: {marginLeft: "18px", fontSize:"80%"},
                                        })),
-                                   React.createElement(WeatherCardDisplay, {temperatureDisplayScale, weatherData: props.weatherData}));
+                                   React.createElement(WeatherCardDisplay, {temperatureDisplayScale, weatherData:props.weatherData}));
     }
 }

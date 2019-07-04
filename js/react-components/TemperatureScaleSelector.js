@@ -9,7 +9,7 @@ export function TemperatureScaleSelector(props = {/*temperatureDisplayScale, sel
                                     style:
                                     {
                                         cursor: (props.temperatureDisplayScale !== "celsius"? "pointer" : "default"), 
-                                        color: (props.temperatureDisplayScale !== "celsius"? "lightgray" : "inherit"),
+                                        color: (props.temperatureDisplayScale !== "celsius"? "rgba(0, 0, 0, 0.2)" : "inherit"),
                                     },
                                     onClick: ()=>props.selectionCallback("celsius"),
                                 }, "°C"),
@@ -19,7 +19,7 @@ export function TemperatureScaleSelector(props = {/*temperatureDisplayScale, sel
                                     {
                                         paddingLeft:"5px",
                                         cursor: (props.temperatureDisplayScale !== "fahrenheit"? "pointer" : "default"),
-                                        color: (props.temperatureDisplayScale !== "fahrenheit"? "lightgray" : "inherit"), 
+                                        color: (props.temperatureDisplayScale !== "fahrenheit"? "rgba(0, 0, 0, 0.2)" : "inherit"), 
                                     },
                                     onClick: ()=>props.selectionCallback("fahrenheit"),
                                 }, "°F"),
@@ -29,7 +29,7 @@ export function TemperatureScaleSelector(props = {/*temperatureDisplayScale, sel
                                     {
                                         paddingLeft:"5px",
                                         cursor: (props.temperatureDisplayScale !== "kelvin"? "pointer" : "default"),
-                                        color: (props.temperatureDisplayScale !== "kelvin"? "lightgray" : "inherit"), 
+                                        color: (props.temperatureDisplayScale !== "kelvin"? "rgba(0, 0, 0, 0.2)" : "inherit"), 
                                     },
                                     onClick: ()=>props.selectionCallback("kelvin"),
                                 }, "°K"));

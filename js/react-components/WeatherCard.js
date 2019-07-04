@@ -5,9 +5,12 @@ import {WeatherSymbol} from "./WeatherSymbol.js";
 
 // Displays a card containing weather information, like temperature and a graphic
 // illustrating the current weather conditions (sunny, rainy, cloudy, etc.).
-export function WeatherCard(props = {/*style, temperatureC, temperatureDisplayScale, weatherSymbolId*/})
+export function WeatherCard(props = {/*style, temperatureC, temperatureDisplayScale, weatherSymbolId, timestamp*/})
 {
-    return React.createElement("div", {className:"WeatherCard", style:props.style,},
+    const hr = String(new Date(props.timestamp).getHours());
+    const m = String(new Date(props.timestamp).getMinutes());
+
+    return React.createElement("div", {className:"WeatherCard", style:props.style},
                                React.createElement(WeatherSymbol,
                                {
                                    weatherSymbolId: props.weatherSymbolId,
@@ -17,5 +20,6 @@ export function WeatherCard(props = {/*style, temperatureC, temperatureDisplaySc
                                    temperatureC: props.temperatureC,
                                    temperatureDisplayScale: props.temperatureDisplayScale,
                                    showTemperatureScaleSymbol: false,
-                               }));
+                               }),
+                               React.createElement("div", {style:{color:"rgba(0, 0, 0, 0.4)", fontSize:"80%"}}, `${hr.padStart(2, "0")}:${m.padStart(2, "0")}`));
 }

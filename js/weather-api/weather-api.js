@@ -24,7 +24,7 @@ export function fmi_weather_api()
                 ...{
                     place: "helsinki",
                     returnParameters: ["temperature", "weathersymbol3"],
-                    forecastIntervalHr: 3,
+                    timeStepHr: 3,
                     numForecasts: 5,
                 },
                 ...args,
@@ -36,7 +36,7 @@ export function fmi_weather_api()
                                         `&storedquery_id=${api.queryId.forecast}` +
                                         `&place=${args.place}` +
                                         `&parameters=${args.returnParameters.join(",")}` +
-                                        `&timestep=${args.forecastIntervalHr*60}`)
+                                        `&timestep=${args.timeStepHr*60}`)
                                         .then(response=>response.text());*/
             const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
 
@@ -91,7 +91,7 @@ export function fmi_weather_api()
                         ...newWeatherEntry,
                         [param]: Number(dataPoints[i*args.returnParameters.length+idx]),
                     };
-                }, {timestamp:startTime.setHours(startTime.getHours() + args.forecastIntervalHr)}));
+                }, {timestamp:new Date(startTime).setHours(startTime.getHours() + args.timeStepHr*i)}));
             }
 
             /// TODO: Might pad the array if it doesn't have enough elements.

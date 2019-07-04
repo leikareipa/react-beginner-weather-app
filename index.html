@@ -26,8 +26,8 @@
                 const weatherData = await fmi_weather_api().get_forecast(
                 {
                     place: city,
-                    timeStepHr: 3,
-                    numForecasts: 8,
+                    timeStepHr: 2,
+                    numForecasts: 6,
                 });
 
                 const weatherApp = React.createElement(WeatherApp, {city, weatherData});
