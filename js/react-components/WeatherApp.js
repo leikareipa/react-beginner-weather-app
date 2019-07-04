@@ -29,12 +29,13 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                           }, capitalizedCityName));
 
         const temperatureScaleSelector = React.createElement("span", {id:"temperature-scale-selector"},
-                                                             React.createElement("span", {style:{marginLeft: "11px"}}, "("),
+                                                             React.createElement("span", {style:{marginLeft: "14px"}}, ""),
                                                              React.createElement("span",
                                                              {
                                                                  style:
                                                                  {
                                                                      cursor: (temperatureDisplayScale !== "celsius"? "pointer" : "default"), 
+                                                                     color: (temperatureDisplayScale !== "celsius"? "lightgray" : "inherit"),
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("celsius"),
                                                              }, "°C"),
@@ -43,11 +44,12 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                              {
                                                                  style:
                                                                  {
-                                                                    cursor: (temperatureDisplayScale !== "fahrenheit"? "pointer" : "default"), 
+                                                                    cursor: (temperatureDisplayScale !== "fahrenheit"? "pointer" : "default"),
+                                                                    color: (temperatureDisplayScale !== "fahrenheit"? "lightgray" : "inherit"), 
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("fahrenheit"),
                                                              }, "°F"),
-                                                             React.createElement("span", {}, ")"));
+                                                             React.createElement("span", {}, ""));
 
         return React.createElement(React.Fragment, {},
                                    title,

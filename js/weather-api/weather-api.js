@@ -40,40 +40,58 @@ export function fmi_weather_api()
                                         .then(response=>response.text());*/
             const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
 
-            const values = (()=>
+            const dataPoints = (()=>
             {
                 const xml = new DOMParser().parseFromString(rawData,"text/xml");
-                const valueElements = xml.getElementsByTagName("gml:doubleOrNilReasonTupleList");
+                const data = xml.getElementsByTagName("gml:doubleOrNilReasonTupleList");
 
-                if (!valueElements.length)
+                if (!data.length)
                 {
                     return [];
                 }
 
-                return valueElements[0].firstChild.nodeValue.split(" ").filter(e=>e.trim()!="");
+                return data[0].firstChild.nodeValue.split(" ").filter(e=>e.trim()!="");
             })();
 
-            /// TODO: Read the forecasts' timestamps from the XML, and add that info into the
-            /// weather entries object that this function returns.
-
-            // For each weather entry, the values array should contain one value per parameter.
-            if ((values.length % args.returnParameters.length) != 0)
+            const startTime = new Date((()=>
             {
-                return [];
-            }
+                const xml = new DOMParser().parseFromString(rawData,"text/xml");
+                const startTime = xml.getElementsByTagName("gml:beginPosition");
+
+                if (!startTime.length)
+                {
+                    // Return an approximation of what the initial timestamp for the data might be.
+                    return Date.now();
+                }
+
+                return startTime[0].firstChild.nodeValue;
+            })());
+
+            /// TODO: Read the forecasts' timestamps from the XML, and add that info into the
+            ///       weather entries object that this function returns.
+
 
             /// NOTE: We don't do any further error-checking to make sure the API response was valid
             //        etc. Normally you might do so, but it's not necessary for the purposes of this
             //        app.
 
+            // For each weather entry, the values array should contain one value per parameter.
+            if ((dataPoints.length % args.returnParameters.length) != 0)
+            {
+                return [];
+            }
+
             // Expand the flat array of values into an array of key/value pairs, for convenience.
             const weatherEntries = [];
-            for (let i = 0; i < values.length/args.returnParameters.length; i++)
+            for (let i = 0; i < dataPoints.length/args.returnParameters.length; i++)
             {
                 weatherEntries.push(args.returnParameters.reduce((newWeatherEntry, param, idx)=>
                 {
-                    return {...newWeatherEntry, [param]:Number(values[i*args.returnParameters.length+idx])}
-                }, {}));
+                    return {
+                        ...newWeatherEntry,
+                        [param]: Number(dataPoints[i*args.returnParameters.length+idx]),
+                    };
+                }, {timestamp:startTime.setHours(startTime.getHours() + args.forecastIntervalHr)}));
             }
 
             /// TODO: Might pad the array if it doesn't have enough elements.
