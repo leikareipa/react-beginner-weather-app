@@ -19,7 +19,7 @@ export function WeatherCardDisplay(props = {/*weatherData = [{}}, temperatureDis
             /// Temporary vertical styling.
             style:
             {
-                bottom: props.weatherData[idx].temperature*8+"px",
+               // bottom: props.weatherData[idx].temperature*8+"px",
             },
         });
     });

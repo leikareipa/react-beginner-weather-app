@@ -5,7 +5,7 @@
 // the fmi::forecast::hirlam::surface::point::multipointcoverage query.
 export function WeatherSymbol({weatherSymbolId})
 {
-    return React.createElement("div", {className:"weather-symbol"},
+    return React.createElement("div", {className:"WeatherSymbol"},
                                React.createElement("img", {src:imageUrl(weatherSymbolId)}));
 
     // Returns a URL corresponding to the given weather image id.

@@ -18,7 +18,7 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
         /// FIXME: Placeholder implementation. 
         const capitalizedCityName = (props.city[0].toUpperCase() + props.city.slice(1).toLowerCase());
 
-        const title = React.createElement("span", {id:"title"},
+        const title = React.createElement("span", {className:"label"},
                                           React.createElement("span", {}, "A weather forecast for "),
                                           React.createElement("span",
                                           {
@@ -28,8 +28,8 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                               },
                                           }, capitalizedCityName));
 
-        const temperatureScaleSelector = React.createElement("span", {id:"temperature-scale-selector"},
-                                                             React.createElement("span", {style:{marginLeft: "14px"}}, ""),
+        const temperatureScaleSelector = React.createElement("span", {className:"temperature-scale-selector"},
+                                                             React.createElement("span", {style:{marginLeft: "16px"}}, "("),
                                                              React.createElement("span",
                                                              {
                                                                  style:
@@ -39,7 +39,7 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("celsius"),
                                                              }, "°C"),
-                                                             React.createElement("span", {}, " | "),
+                                                             React.createElement("span", {style:{paddingLeft:"5px"}}, ""),
                                                              React.createElement("span",
                                                              {
                                                                  style:
@@ -49,7 +49,7 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("fahrenheit"),
                                                              }, "°F"),
-                                                             React.createElement("span", {}, " | "),
+                                                             React.createElement("span", {style:{paddingLeft:"5px"}}, ""),
                                                              React.createElement("span",
                                                              {
                                                                  style:
@@ -59,11 +59,12 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("kelvin"),
                                                              }, "°K"),
-                                                             React.createElement("span", {}, ""));
+                                                             React.createElement("span", {}, ")"));
 
         return React.createElement(React.Fragment, {},
-                                   title,
-                                   temperatureScaleSelector,
+                                   React.createElement("div", {className:"title"},
+                                       title,
+                                       temperatureScaleSelector),
                                    React.createElement(WeatherCardDisplay, {temperatureDisplayScale, weatherData: props.weatherData}));
     }
 }

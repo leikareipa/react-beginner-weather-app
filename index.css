@@ -8,9 +8,15 @@ body
     padding-top: 25px;
 }
 
-.WeatherCardDisplay
+.WeatherApp
 {
-    padding-top: 200px;
+    display: inline-block;
+    width: 682px;
+}
+
+.WeatherApp .title
+{
+    text-align: left;
 }
 
 .WeatherCard
@@ -28,31 +34,17 @@ body
     position: relative;
 }
 
-.WeatherApp #title
+.WeatherCard:first-child
 {
-    /* Temporary style hack to manually align elements for mocking.*/
-    position: relative;
-    right: 185px;
+    margin-left: 0;
 }
 
-.WeatherApp #temperature-scale-selector
+.WeatherCard:last-child
 {
-    /* Temporary style hack to manually align elements for mocking.*/
-    position: relative;
-    right: 185px;
+    margin-right: 0;
 }
 
-#city-selector
-{
-    display: inline-block;
-}
-
-#temperature-scale-selector
-{
-    display: inline-block;
-}
-
-.weather-symbol img
+.WeatherSymbol img
 {
     width: 40px;
     height: 40px;
