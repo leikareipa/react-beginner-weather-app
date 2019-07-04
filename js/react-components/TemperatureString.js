@@ -16,6 +16,7 @@ export function TemperatureString({temperatureC, temperatureDisplayScale, showTe
             {
                 case "celsius": return [Math.floor(temperatureC), "C"];
                 case "fahrenheit": return [Math.floor((temperatureC * 1.8) + 32), "F"];
+                case "kelvin": return [Math.floor(temperatureC + 273.15), "K"];
                 default: return [0, "C"];
             }
         })();

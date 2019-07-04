@@ -49,6 +49,16 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                                  },
                                                                  onClick:()=>setTemperatureDisplayScale("fahrenheit"),
                                                              }, "°F"),
+                                                             React.createElement("span", {}, " | "),
+                                                             React.createElement("span",
+                                                             {
+                                                                 style:
+                                                                 {
+                                                                    cursor: (temperatureDisplayScale !== "kelvin"? "pointer" : "default"),
+                                                                    color: (temperatureDisplayScale !== "kelvin"? "lightgray" : "inherit"), 
+                                                                 },
+                                                                 onClick:()=>setTemperatureDisplayScale("kelvin"),
+                                                             }, "°K"),
                                                              React.createElement("span", {}, ""));
 
         return React.createElement(React.Fragment, {},
