@@ -27,8 +27,13 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                        React.createElement(TemperatureScaleSelector,
                                        {
                                            temperatureDisplayScale,
-                                           selectionCallback: setTemperatureDisplayScale,
-                                           style: {marginLeft: "18px", fontSize:"80%"},
+                                           selectCallback: setTemperatureDisplayScale,
+                                           scales:
+                                           [
+                                               {scaleName: "celsius", scaleSymbol: "C"},
+                                               {scaleName: "fahrenheit", scaleSymbol: "F"},
+                                               {scaleName: "kelvin", scaleSymbol: "K"},
+                                           ],
                                        })),
                                    React.createElement(WeatherCardDisplay, {temperatureDisplayScale, weatherData:props.weatherData}));
     }

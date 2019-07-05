@@ -8,18 +8,41 @@ body
     padding-top: 25px;
 }
 
-.WeatherApp
+#weather-app
 {
     display: inline-block;
     width: 545px;
 }
 
-.WeatherApp .title
+#weather-app .title
 {
     text-align: left;
 }
 
-.WeatherCard
+#weather-app .TemperatureScaleSelector
+{
+    margin-left: 18px;
+    font-size: 80%;
+}
+
+#weather-app .TemperatureScaleSelectorElement
+{
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+#weather-app .TemperatureScaleSelectorElement.inactive
+{
+    color: rgba(0, 0, 0, 0.2);
+}
+
+#weather-app .TemperatureScaleSelectorElement:first-child
+{
+    margin-left: 0;
+}
+
+#weather-app .WeatherCard
 {
     display: inline-block;
     padding: 14px;
@@ -34,29 +57,29 @@ body
     position: relative;
 }
 
-.WeatherCard:first-child
+#weather-app .WeatherCard:first-child
 {
     padding-top: 18px;
     padding-left: 22px;
     padding-right: 22px;
 }
 
-.WeatherCardDisplay
+#weather-app .WeatherCardDisplay
 {
     padding-top: 2px;
 }
 
-.WeatherCard:first-child
+#weather-app .WeatherCard:first-child
 {
     margin-left: 0;
 }
 
-.WeatherCard:last-child
+#weather-app .WeatherCard:last-child
 {
     margin-right: 0;
 }
 
-.WeatherSymbol img
+#weather-app .WeatherSymbol img
 {
     width: 45px;
     height: 45px;
