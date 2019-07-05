@@ -11,12 +11,10 @@
 // the fmi::forecast::hirlam::surface::point::multipointcoverage query.
 export function WeatherSymbol(props = {/*weatherSymbolId, isNight*/})
 {
-    return React.createElement("img",
-    {
-        className: "WeatherSymbol",
-        title: imageDescription(props.weatherSymbolId),
-        src: imageUrl(props.weatherSymbolId),
-    });
+    return <img className="WeatherSymbol"
+                title={imageDescription(props.weatherSymbolId)}
+                src={imageUrl(props.weatherSymbolId)}>
+           </img>
 
     // Returns a textual description of the given symbol. Copied from
     // https://web.archive.org/web/20170717150205/http://en.ilmatieteenlaitos.fi/weather-symbols.

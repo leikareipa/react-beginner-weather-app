@@ -15,15 +15,13 @@ export function WeatherCardDisplay(props = {/*weatherData = [{}], temperatureDis
 {
     const weatherCards = props.weatherData.map((data, idx)=>
     {
-        return React.createElement(WeatherCard,
-        {
-            key: idx,
-            timestamp: data.timestamp,
-            temperatureC: data.temperature,
-            weatherSymbolId: data.weatherSymbol3,
-            temperatureDisplayScale: props.temperatureDisplayScale,
-        });
+        return <WeatherCard key={idx}
+                            timestamp={data.timestamp}
+                            temperatureC={data.temperature}
+                            weatherSymbolId={data.weatherSymbol3}
+                            temperatureDisplayScale={props.temperatureDisplayScale}>
+               </WeatherCard>
     });
 
-    return React.createElement("div", {className:"WeatherCardDisplay"}, ...weatherCards);
+    return <div className="WeatherCardDisplay">{weatherCards}</div>
 }
