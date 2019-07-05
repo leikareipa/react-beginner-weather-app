@@ -11,7 +11,6 @@ body
 #weather-app
 {
     display: inline-block;
-    width: 544px;
 }
 
 #weather-app .Header
@@ -51,9 +50,17 @@ body
     margin-left: 0;
 }
 
+#weather-app .WeatherCardDisplay
+{
+    padding-top: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 #weather-app .WeatherCard
 {
-    display: inline-block;
+    flex-grow: 1;
     padding: 14px;
     padding-left: 20px;
     padding-right: 20px;
@@ -63,12 +70,6 @@ body
     text-align: center;
     font-size: 85%;
     box-shadow: 0px 6px 4px -3px #00000023;
-    position: relative;
-}
-
-#weather-app .WeatherCardDisplay
-{
-    padding-top: 2px;
 }
 
 #weather-app .WeatherCard:first-child
@@ -91,4 +92,9 @@ body
 {
     width: 45px;
     height: 45px;
+}
+
+@media only screen and (max-width: 660px)
+{
+
 }

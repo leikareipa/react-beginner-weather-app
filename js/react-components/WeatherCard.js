@@ -10,7 +10,7 @@ export function WeatherCard(props = {/*style, temperatureC, temperatureDisplaySc
     const hr = String(new Date(props.timestamp).getHours());
     const m = String(new Date(props.timestamp).getMinutes());
 
-    return React.createElement("div", {className:"WeatherCard", style:props.style},
+    return React.createElement("div", {className:"WeatherCard"},
                                React.createElement(WeatherSymbol,
                                {
                                    weatherSymbolId: props.weatherSymbolId,
