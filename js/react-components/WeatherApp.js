@@ -12,19 +12,13 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
         !Array.isArray(props.weatherData) ||
         !props.weatherData.length)
     {
-        return React.createElement("p", {style:{fontStyle:"italic"}}, `No weather data found for \"${props.city}\".`);
+        return React.createElement("div", {style:{fontStyle:"italic"}}, `No weather data found for \"${props.city}\".`);
     }
     else
     {
-        /// FIXME: Placeholder implementation of ensuring proper capitalization of the user-
-        ///        facing city name.
-        const capitalizedCityName = (props.city[0].toUpperCase() + props.city.slice(1).toLowerCase());
-
         return React.createElement(React.Fragment, {},
-                                   React.createElement("div", {className:"title"},
-                                       React.createElement("span", {className:"label"},
-                                                            React.createElement("span", {}, "Weather forecast for "),
-                                                            React.createElement("span", {style:{fontWeight:"bold"},}, capitalizedCityName)),
+                                   React.createElement("div", {className:"Header"},
+                                       React.createElement("div", {className:"Title"}, props.title),
                                        React.createElement(TemperatureScaleSelector,
                                        {
                                            temperatureDisplayScale,
@@ -36,6 +30,10 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
                                                {scaleName: "kelvin", scaleSymbol: "K"},
                                            ],
                                        })),
-                                   React.createElement(WeatherCardDisplay, {temperatureDisplayScale, weatherData:props.weatherData}));
+                                   React.createElement(WeatherCardDisplay,
+                                   {
+                                       temperatureDisplayScale,
+                                       weatherData: props.weatherData,
+                                   }));
     }
 }

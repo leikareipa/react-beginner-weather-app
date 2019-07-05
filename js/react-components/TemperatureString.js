@@ -6,7 +6,7 @@
 // display as 29, and 28.3 as 28.
 export function TemperatureString(props = {/*temperatureC, temperatureDisplayScale, showTemperatureScaleSymbol*/})
 {
-    return React.createElement("span", {className:"TemperatureString"}, temperature_as_string());
+    return React.createElement("div", {className:"TemperatureString"}, temperature_as_string());
 
     function temperature_as_string()
     {

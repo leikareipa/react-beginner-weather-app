@@ -21,5 +21,5 @@ export function WeatherCard(props = {/*style, temperatureC, temperatureDisplaySc
                                    temperatureDisplayScale: props.temperatureDisplayScale,
                                    showTemperatureScaleSymbol: false,
                                }),
-                               React.createElement("div", {style:{color:"rgba(0, 0, 0, 0.4)", fontSize:"80%"}}, `${hr.padStart(2, "0")}:${m.padStart(2, "0")}`));
+                               React.createElement("div", {className:"Timestamp"}, `${hr.padStart(2, "0")}:${m.padStart(2, "0")}`));
 }
