@@ -5,9 +5,51 @@
 // the fmi::forecast::hirlam::surface::point::multipointcoverage query.
 export function WeatherSymbol(props = {/*weatherSymbolId, isNight*/})
 {
-    return React.createElement("img", {className:"WeatherSymbol", src:imageUrl(props.weatherSymbolId)});
+    return React.createElement("img",
+    {
+        className: "WeatherSymbol",
+        title: imageDescription(props.weatherSymbolId),
+        src: imageUrl(props.weatherSymbolId),
+    });
 
-    // Returns a URL corresponding to the given weather image id.
+    // Returns a textual description of the given symbol. Copied from
+    // https://web.archive.org/web/20170717150205/http://en.ilmatieteenlaitos.fi/weather-symbols.
+    function imageDescription(symbolId = 0)
+    {
+        switch (symbolId)
+        {
+            case 1:  return "Clear";
+            case 2:  return "Partly cloudy";
+            case 21: return "Light rain showers";
+            case 22: return "Rain showers";
+            case 23: return "Heavy rain showers";
+            case 3:  return "Cloudy";
+            case 31: return "Light rain";
+            case 32: return "Rain";
+            case 33: return "Heavy rain";
+            case 41: return "Light snow showers";
+            case 42: return "Snow showers";
+            case 43: return "Heavy snow showers";
+            case 51: return "Light snowfall";
+            case 52: return "Snowfall";
+            case 53: return "Heavy snowfall";
+            case 61: return "Thundershowers";
+            case 62: return "Strong thundershowers";
+            case 63: return "Thunder";
+            case 64: return "Heavy thunder";
+            case 71: return "Light sleet showers";
+            case 72: return "Sleet showers";
+            case 73: return "Heavy sleet showers";
+            case 81: return "Light sleet";
+            case 82: return "Sleet";
+            case 83: return "Heavy sleet";
+            case 91: return "Haze"
+            case 92: return "Fog"
+            default: return "";
+        }
+    }
+
+    // Returns a URL corresponding to the given weather symbol.
     function imageUrl(symbolId = 0)
     {
         const baseUrl = "https://cdn.fmi.fi/symbol-images/smartsymbol/v3/p/";
