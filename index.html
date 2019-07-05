@@ -12,8 +12,8 @@
         <script src="https://unpkg.com/react@16.8.6/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js" crossorigin></script>
         <script type="module">
-            import {fmi_weather_api} from "./js/fmi-weather-api/fmi-weather-api.js";
-            import {WeatherApp} from "./js/react-components/WeatherApp.js";
+            import {fmi_weather_api} from "./dist/fmi-weather-api/fmi-weather-api.js";
+            import {WeatherApp} from "./dist/react-components/WeatherApp.js";
 
             (async()=>
             {
@@ -34,7 +34,7 @@
                 {
                     place,
                     weatherData,
-                    title: ("Today's weather in " + string_to_title_case(place)),
+                    title: ("Weather forecast for " + string_to_title_case(place)),
                 });
 
                 ReactDOM.render(weatherApp, document.getElementById("weather-app"));
