@@ -15,15 +15,20 @@ export function fmi_weather_api()
 
     const publicInterface =
     {
-        // Returns a weather forecast given the arguments. It seems that the forecast data
-        // extends up to three days away.
+        // Returns a set of weather forecasts given the arguments. The forecasts will be
+        // returned as an array of objects, one object per forecast. The forecast object
+        // will contain values for the parameters specified by returnParameters; as well
+        // as a timestamp specifying the point in time that the forecast is for.
+        //
+        // Will return at most the number of forecasts specified by numForecasts, but
+        // may return fewer (including none, i.e. an empty array).
         get_forecast: async(args = {})=>
         {
             args =
             {
                 ...{
-                    place: "helsinki",
-                    returnParameters: ["temperature", "weathersymbol3"],
+                    place: "Helsinki",
+                    returnParameters: ["temperature", "weatherSymbol3"],
                     timeStepHr: 3,
                     numForecasts: 5,
                 },
@@ -31,14 +36,14 @@ export function fmi_weather_api()
             }
 
             /// TODO: Add the "starttime" and "endtime" query parameters.
-            /*const rawData = await fetch(api.baseUrl +
+            const rawData = await fetch(api.baseUrl +
                                         `&request=getFeature` +
                                         `&storedquery_id=${api.queryId.forecast}` +
                                         `&place=${args.place}` +
                                         `&parameters=${args.returnParameters.join(",")}` +
                                         `&timestep=${args.timeStepHr*60}`)
-                                        .then(response=>response.text());*/
-            const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
+                                        .then(response=>response.text());
+           // const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
 
             const dataPoints = (()=>
             {
@@ -67,10 +72,6 @@ export function fmi_weather_api()
                 return startTime[0].firstChild.nodeValue;
             })());
 
-            /// TODO: Read the forecasts' timestamps from the XML, and add that info into the
-            ///       weather entries object that this function returns.
-
-
             /// NOTE: We don't do any further error-checking to make sure the API response was valid
             //        etc. Normally you might do so, but it's not necessary for the purposes of this
             //        app.
@@ -81,9 +82,9 @@ export function fmi_weather_api()
                 return [];
             }
 
-            // Expand the flat array of values into an array of key/value pairs, for convenience.
+            // Expand the flat array of values into an array of key/value pairs.
             const weatherEntries = [];
-            for (let i = 0; i < dataPoints.length/args.returnParameters.length; i++)
+            for (let i = 0; i < Math.min(args.numForecasts, dataPoints.length/args.returnParameters.length); i++)
             {
                 weatherEntries.push(args.returnParameters.reduce((newWeatherEntry, param, idx)=>
                 {
@@ -93,9 +94,6 @@ export function fmi_weather_api()
                     };
                 }, {timestamp:new Date(startTime).setHours(startTime.getHours() + args.timeStepHr*i)}));
             }
-
-            /// TODO: Might pad the array if it doesn't have enough elements.
-            weatherEntries.length = Math.min(args.numForecasts, weatherEntries.length);
 
             return weatherEntries;
         },

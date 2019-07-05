@@ -14,7 +14,7 @@ export function WeatherCardDisplay(props = {/*weatherData = [{}], temperatureDis
             key: idx,
             timestamp: data.timestamp,
             temperatureC: data.temperature,
-            weatherSymbolId: data.weathersymbol3,
+            weatherSymbolId: data.weatherSymbol3,
             temperatureDisplayScale: props.temperatureDisplayScale,
         });
     });
