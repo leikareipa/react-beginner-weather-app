@@ -16,7 +16,8 @@ export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
     }
     else
     {
-        /// FIXME: Placeholder implementation for ensuring proper capitalization of the city name. 
+        /// FIXME: Placeholder implementation of ensuring proper capitalization of the user-
+        ///        facing city name.
         const capitalizedCityName = (props.city[0].toUpperCase() + props.city.slice(1).toLowerCase());
 
         return React.createElement(React.Fragment, {},
