@@ -3,9 +3,9 @@
 // Displays a graphic indicating a weather condition - like sunny, cloudy, rainy, etc.
 // Takes as input a WeatherSymbol3 value as returned by FMI's open data weather API for
 // the fmi::forecast::hirlam::surface::point::multipointcoverage query.
-export function WeatherSymbol({weatherSymbolId})
+export function WeatherSymbol(props = {/*weatherSymbolId, isNight*/})
 {
-    return React.createElement("img", {className:"WeatherSymbol", src:imageUrl(weatherSymbolId)});
+    return React.createElement("img", {className:"WeatherSymbol", src:imageUrl(props.weatherSymbolId)});
 
     // Returns a URL corresponding to the given weather image id.
     function imageUrl(symbolId = 0)
@@ -47,8 +47,10 @@ export function WeatherSymbol({weatherSymbolId})
             }
         })();
 
-        /// TODO: Adjust the image id for potential night mode (e.g. 101 is the night [moon] version of 1 [sun]).
+        // The night (moon) versions of FMI's symbols are identified by appending "10" to
+        // the symbol's image name; e.g. 9 -> 109, but note: 19 -> 119.
+        const nightPrefix = (props.isNight? ("1".padEnd(3 - String(imageId).length, "0")) : "");
         
-        return (baseUrl + imageId + ".svg");
+        return (baseUrl + nightPrefix + imageId + ".svg");
     }
 }

@@ -14,6 +14,7 @@ export function WeatherCard(props = {/*style, temperatureC, temperatureDisplaySc
                                React.createElement(WeatherSymbol,
                                {
                                    weatherSymbolId: props.weatherSymbolId,
+                                   isNight: ((hr > 20) || (hr < 6)), /// TODO: Adjust for current length of day.
                                }),
                                React.createElement(TemperatureString,
                                {

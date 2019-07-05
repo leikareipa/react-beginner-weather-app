@@ -26,15 +26,15 @@
                 const weatherData = await fmi_weather_api().get_forecast(
                 {
                     place: city,
-                    timeStepHr: 2,
-                    numForecasts: 6,
+                    timeStepHr: 3,
+                    numForecasts: 5,
                 });
 
                 const weatherApp = React.createElement(WeatherApp,
                 {
                     city,
                     weatherData,
-                    title: ("Weather forecast for " + string_to_title_case(city)),
+                    title: ("12-hour weather forecast for " + string_to_title_case(city)),
                 });
 
                 ReactDOM.render(weatherApp, document.getElementById("weather-app"));
