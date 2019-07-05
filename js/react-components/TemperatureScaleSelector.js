@@ -1,3 +1,9 @@
+/*
+ * 2019 Tarpeeksi Hyvae Soft
+ * Beginner weather app in React
+ * 
+ */
+
 "use strict";
 
 // Displays a selectable list of the given temperature scales; e.g. "°C °F °K". The given

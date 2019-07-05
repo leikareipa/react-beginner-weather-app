@@ -1,3 +1,9 @@
+/*
+ * 2019 Tarpeeksi Hyvae Soft
+ * Beginner weather app in React
+ * 
+ */
+
 "use strict";
 
 import {WeatherCard} from "./WeatherCard.js";

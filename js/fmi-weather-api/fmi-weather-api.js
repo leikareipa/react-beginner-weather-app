@@ -1,7 +1,14 @@
+/*
+ * 2019 Tarpeeksi Hyvae Soft
+ * Beginner weather app in React
+ * 
+ */
+
 "use strict";
 
-// Provides a very partial access wrapper for the Finnish Meteorological Institute's open
-// data weather API.
+// Provides a very partial third-party access wrapper for the Finnish Meteorological
+// Institute's open data weather API. You can find the API's documentation at
+// https://en.ilmatieteenlaitos.fi/open-data-manual.
 export function fmi_weather_api()
 {
     const api =

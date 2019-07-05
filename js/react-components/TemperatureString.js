@@ -1,3 +1,9 @@
+/*
+ * 2019 Tarpeeksi Hyvae Soft
+ * Beginner weather app in React
+ * 
+ */
+
 "use strict";
 
 // Displays as a string the given temperature; f.e. "25°" (without the temperature

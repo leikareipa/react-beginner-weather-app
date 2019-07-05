@@ -1,3 +1,9 @@
+/*
+ * 2019 Tarpeeksi Hyvae Soft
+ * Beginner weather app in React
+ * 
+ */
+
 "use strict";
 
 // Displays a graphic indicating a weather condition - like sunny, cloudy, rainy, etc.
