@@ -3,16 +3,16 @@
 import {WeatherCardDisplay} from "./WeatherCardDisplay.js";
 import {TemperatureScaleSelector} from "./TemperatureScaleSelector.js";
 
-// Displays the given weather data for the given city.
-export function WeatherApp(props = {/*city = "", weatherData = [{}]*/})
+// Displays the given weather data for the given place (e.g. city).
+export function WeatherApp(props = {/*place = "", weatherData = [{}]*/})
 {
     const [temperatureDisplayScale, setTemperatureDisplayScale] = React.useState("celsius");
 
-    if (typeof props.city !== "string" ||
+    if (typeof props.place !== "string" ||
         !Array.isArray(props.weatherData) ||
         !props.weatherData.length)
     {
-        return React.createElement("div", {style:{fontStyle:"italic"}}, `No weather data found for \"${props.city}\".`);
+        return React.createElement("div", {style:{fontStyle:"italic"}}, `No weather information for \"${props.place}\".`);
     }
     else
     {

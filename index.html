@@ -17,24 +17,24 @@
 
             (async()=>
             {
-                const city = (()=>
+                const place = (()=>
                 {
                     const params = new URLSearchParams(window.location.search);
-                    return (params.has("city")? params.get("city") : "Helsinki");
+                    return (params.has("place")? params.get("place") : "Helsinki");
                 })();
 
                 const weatherData = await fmi_weather_api().get_forecast(
                 {
-                    place: city,
+                    place,
                     timeStepHr: 2,
                     numForecasts: 6,
                 });
 
                 const weatherApp = React.createElement(WeatherApp,
                 {
-                    city,
+                    place,
                     weatherData,
-                    title: ("Ten-hour weather forecast for " + string_to_title_case(city)),
+                    title: ("The weather in " + string_to_title_case(place)),
                 });
 
                 ReactDOM.render(weatherApp, document.getElementById("weather-app"));
