@@ -42,15 +42,24 @@ export function fmi_weather_api()
                 ...args,
             }
 
-            /// TODO: Add the "starttime" and "endtime" query parameters.
-            /*const rawData = await fetch(api.baseUrl +
+            // We'll limit the query to the timespan requested of us. Note that this assumes
+            // that the forecast will always be fetched starting from the current moment; in
+            // the future, I might add support for more arbitrary timespans.
+            const startDate = new Date();
+            const endDate = new Date(startDate);
+            endDate.setHours(endDate.getHours() + (args.timeStepHr * args.numForecasts));
+
+            // Make the query to the API.
+            const rawData = await fetch(api.baseUrl +
                                         `&request=getFeature` +
                                         `&storedquery_id=${api.queryId.forecast}` +
                                         `&place=${args.place}` +
+                                        `&starttime=${startDate.toISOString()}` +
+                                        `&endtime=${endDate.toISOString()}` +
                                         `&parameters=${args.returnParameters.join(",")}` +
                                         `&timestep=${args.timeStepHr*60}`)
-                                        .then(response=>response.text());*/
-            const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
+                                        .then(response=>response.text());
+            //const rawData = await fetch("./misc/weather-data.xml").then(response=>response.text());/// For developing, to cut down on traffic to the data API
 
             const dataPoints = (()=>
             {
