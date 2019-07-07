@@ -20,9 +20,9 @@ export function TemperatureString(props = {/*temperatureC, temperatureDisplaySca
         {
             switch (props.temperatureDisplayScale)
             {
-                case "celsius": return [Math.floor(props.temperatureC), "C"];
-                case "fahrenheit": return [Math.floor((props.temperatureC * 1.8) + 32), "F"];
-                case "kelvin": return [Math.floor(props.temperatureC + 273.15), "K"];
+                case "celsius": return [Math.round(props.temperatureC), "C"];
+                case "fahrenheit": return [Math.round((props.temperatureC * 1.8) + 32), "F"];
+                case "kelvin": return [Math.round(props.temperatureC + 273.15), "K"];
                 default: return [-1, "?"];
             }
         })();
