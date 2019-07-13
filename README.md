@@ -3,6 +3,8 @@ A small app/widget that displays a weather forecast spanning the next couple of 
 
 This was my first time using React, and, specifically, vanilla React. That is, React without tools like Babel, Webpack, etc. - although JSX/Babel was added in a later commit.
 
+You can find the app live on the web [here](http://tarpeeksihyvaesoft.com/s/weather-app/).
+
 ## Usage
 
 ### Building
