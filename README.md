@@ -38,3 +38,53 @@ localhost:8000/?place=Tampere
 The app's JavaScript entry point can be found in [index.html](index.html), where an instance of the weather app is initialized.
 
 *(More on this topic, later.*)
+
+## Project status
+The project is in a generally finished state, with minor changes and/or additions possible.
+
+### Browser compatibility
+Here are rough estimates of the required browser versions to run the app. Browsers marked with "No" are not compatible at all.
+
+<table>
+    <tr>
+        <th align="center" width="90">
+            <img alt="Chrome" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_24x24.png">
+            <br>Chrome
+        </th>
+        <th align="center" width="90">
+            <img alt="Opera" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_24x24.png">
+            <br>Opera
+        </th>
+        <th align="center" width="90">
+            <img alt="Safari" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_24x24.png">
+            <br>Safari
+        </th>
+        <th align="center" width="90">
+            <img alt="Firefox" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_24x24.png">
+            <br>Firefox
+        </th>
+        <th align="center" width="90">
+            <img alt="Edge" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_24x24.png">
+            <br>Edge
+        </th>
+        <th align="center" width="90">
+            <img title="Internet Explorer" alt="Internet Explorer" src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/archive/internet-explorer_6/internet-explorer_6_24x24.png">
+            <br>IE
+        </th>
+    </tr>
+    <tr>
+        <td align="center">64</td>
+        <td align="center">51</td>
+        <td align="center">11.1</td>
+        <td align="center">No</td>
+        <td align="center">No</td>
+        <td align="center">No</td>
+    </tr>
+</table>
+
+The two main points to note from the table above are (1) you want to use a fairly recent version of your browser, and (2) Firefox is not supported, due to it missing Unicode property escapes.
+
+## Credits
+The weather data and weather icons come from [the Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
+
+The browser icons used in the Browser compatibility section, above, come from [alrra](https://github.com/alrra)'s [Browser Logos](https://github.com/alrra/browser-logos) repository.
