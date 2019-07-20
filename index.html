@@ -19,8 +19,13 @@
             {
                 const place = (()=>
                 {
-                    const params = new URLSearchParams(window.location.search);
-                    return (params.has("place")? params.get("place") : "Helsinki");
+                    const defaultPlace = "Helsinki";
+                    const userPlace = new URLSearchParams(window.location.search).get("place").replace(/\s/g, "");
+                    const isValidUserPlace = /^[(\p{L}),]+$/u.test(userPlace);
+
+                    console.log(isValidUserPlace, userPlace)
+
+                    return (isValidUserPlace? userPlace : defaultPlace);
                 })();
 
                 const weatherData = await fmi_weather_api().get_forecast(
