@@ -1,9 +1,9 @@
 # Beginner weather app in React
-A small app/widget that displays a weather forecast spanning the next couple of hours. The app is essentially a partial view to the [open data API of the Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/open-data-manual), from which it fetches the weather forecast data for display.
+A small app/widget that displays a weather forecast spanning the next couple of hours. The app is essentially a partial view to the [open data API of the Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/open-data-manual) from which it fetches the weather forecast data for display.
 
 This was my first time using React, and, specifically, vanilla React. That is, React without tools like Babel, Webpack, etc. - although JSX/Babel was added in a later commit.
 
-You can find the app live on the web [here](http://tarpeeksihyvaesoft.com/s/weather-app/).
+You can find the app live on the web [here](http://tarpeeksihyvaesoft.com/s/weather-app/) (note that Firefox may not be supported at this time, due to it missing Unicode property escapes).
 
 ## Usage
 
