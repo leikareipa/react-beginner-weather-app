@@ -21,9 +21,7 @@
                 {
                     const defaultPlace = "Helsinki";
                     const userPlace = new URLSearchParams(window.location.search).get("place").replace(/\s/g, "");
-                    const isValidUserPlace = /^[(\p{L}),]+$/u.test(userPlace);
-
-                    console.log(isValidUserPlace, userPlace)
+                    const isValidUserPlace = /^[\p{L},]+$/u.test(userPlace);
 
                     return (isValidUserPlace? userPlace : defaultPlace);
                 })();
@@ -47,13 +45,9 @@
 
             function string_to_title_case(string = "")
             {
-                return string.split(" ").reduce((titleCaseString, word)=>
-                {
-                    return (titleCaseString
-                            + (titleCaseString.length !== 0? " " : "")
-                            + (word[0].toUpperCase()
-                            + word.slice(1).toLowerCase()));
-                }, "")
+                return string[0].toUpperCase() +
+                       string.slice(1).replace(/, */, ", ")
+                                      .replace(/,? \p{L}/ug, (match)=>match.toUpperCase());
             }
         </script>
     </body>
