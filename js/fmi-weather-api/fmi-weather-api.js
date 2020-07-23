@@ -13,7 +13,7 @@ export function fmi_weather_api()
 {
     const api =
     {
-        baseUrl: "http://opendata.fmi.fi/wfs?service=WFS",
+        baseUrl: "//opendata.fmi.fi/wfs?service=WFS",
         queryId:
         {
             forecast: "fmi::forecast::hirlam::surface::point::multipointcoverage",
