@@ -3,7 +3,7 @@ A small app/widget that displays a weather forecast spanning the next couple of 
 
 This was my first time using React, and, specifically, vanilla React. That is, React without tools like Babel, Webpack, etc. - although JSX/Babel was added in a later commit.
 
-You can find the app live on the web [here](http://tarpeeksihyvaesoft.com/s/weather-app/) (note that Firefox may not be supported at this time, due to it missing Unicode property escapes).
+You can find the app live on the web [here](https://tarpeeksihyvaesoft.com/s/weather-app/).
 
 ## Usage
 
@@ -76,13 +76,13 @@ Here are rough estimates of the required browser versions to run the app. Browse
         <td align="center">64</td>
         <td align="center">51</td>
         <td align="center">11.1</td>
-        <td align="center">No</td>
+        <td align="center">78*</td>
         <td align="center">No</td>
         <td align="center">No</td>
     </tr>
 </table>
 
-The two main points to note from the table above are (1) you want to use a fairly recent version of your browser, and (2) Firefox is not supported, due to it missing Unicode property escapes.
+\* Earlier versions of Firefox did not support Unicode property escapes.
 
 ## Credits
 The weather data and weather icons come from [the Finnish Meteorological Institute](https://en.ilmatieteenlaitos.fi/).
